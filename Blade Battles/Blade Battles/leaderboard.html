@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leaderboard</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-image: url("background12.jpg");
+    }
+    .heading {
+        font-size: larger;
+    }
+
+    .leaderboard {
+        width: 80%;
+        margin: 20px auto;
+        text-align: center;
+        border: 3px solid #ddd;
+        background-color: rgba(242, 242, 242, 0.8); /* Adjust the alpha (last) value to change transparency */
+        border-radius: 20px;
+        overflow: hidden;
+        padding-bottom: 20px;
+    }
+    thead {
+        background-color: rgb(249, 55, 55);
+    }
+    .leaderboard h2 {
+        padding: 20px 0;
+        font-size: 2em;
+        color: #333;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 15px;
+        border: 1px solid #ddd;
+        text-align: left;
+    }
+
+    th {
+        background-color: #eaeaea;
+        color: #333;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    tr:hover {
+        background-color: rgba(253, 234, 88, 0.873);
+        font-weight: bold;
+        font-style:italic;
+    }
+
+    tr:hover td {
+        transform: scale(1.1);
+    }
+
+    .player-row {
+        transition: all 0.3s ease;
+        opacity: 1;
+    }
+</style>
+</head>
+<body>
+<div class="leaderboard">
+    <h2 class="heading">LEADERBOARD</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>SL.</th>
+                <th>RANK</th>
+                <th>NAME</th>
+                <th>POINTS</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="player-row">
+                <td>01</td>
+                <td>200</td>
+                <td>Janhvi</td>
+                <td>1000</td>
+            </tr>
+            <tr class="player-row">
+                <td>02</td>
+                <td>179</td>
+                <td>demo</td>
+                <td>906</td>
+            </tr>
+            <tr class="player-row">
+                <td>03</td>
+                <td>168</td>
+                <td>Pojji</td>
+                <td>850</td>
+            </tr>
+            <tr class="player-row">
+                <td>04</td>
+                <td>145</td>
+                <td>Archita</td>
+                <td>791</td>
+            </tr>
+            <tr class="player-row">
+                <td>05</td>
+                <td>120</td>
+                <td>Ara_ara</td>
+                <td>776</td>
+            </tr>
+            <tr class="player-row">
+                <td>06</td>
+                <td>145</td>
+                <td>Player Name 6</td>
+                <td>750</td>
+            </tr>
+            <tr class="player-row">
+                <td>07</td>
+                <td>145</td>
+                <td>Player Name 7</td>
+                <td>750</td>
+            </tr>
+            <tr class="player-row">
+                <td>08</td>
+                <td>145</td>
+                <td>Player Name 8</td>
+                <td>750</td>
+            </tr>
+            <tr class="player-row">
+                <td>09</td>
+                <td>145</td>
+                <td>Player Name 9</td>
+                <td>750</td>
+            </tr>
+            <tr class="player-row">
+                <td>10</td>
+                <td>145</td>
+                <td>Player Name 10</td>
+                <td>750</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<script>
+    const leaderboard = document.querySelector('tbody');
+    const rows = Array.from(leaderboard.querySelectorAll('.player-row'));
+
+    rows.sort((a, b) => {
+        const pointsA = parseInt(a.querySelector('td:nth-child(4)').textContent, 10);
+        const pointsB = parseInt(b.querySelector('td:nth-child(4)').textContent, 10);
+        return pointsB - pointsA;
+    });
+
+    leaderboard.innerHTML = '';
+    rows.forEach((row, index) => {
+        leaderboard.appendChild(row);
+        if (index >= 3) {
+            row.classList.add('hidden');
+        }
+    });
+</script>
+</body>
+</html>
